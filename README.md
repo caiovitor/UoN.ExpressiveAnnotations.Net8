@@ -35,13 +35,13 @@ To use Expressive Annotations in your .NET project:
 
 #### NuGet
 
-The library is available from [nuget.org](https://www.nuget.org/packages/UoN.ExpressiveAnnotations.NetCore/)
+The library is available from [nuget.org](https://www.nuget.org/packages/UoN.ExpressiveAnnotations.Net8/)
 
 #### Build from source
 
 We recommend building with the `dotnet` cli, but since the package targets `.NET 8.0` and depends only on other `.NET 8.0` libraries, you should be able to build it in any tooling that supports those requirements.
 
-- Have the .NET Core SDK 8.0 or newer
+- Have the .NET SDK 8.0 or newer
 - `dotnet build`
 - Optionally `dotnet pack`
 - Reference the resulting assembly, or NuGet package.
@@ -88,7 +88,7 @@ using UoN.ExpressiveAnnotations.NetCore.Attributes;
 
 ## What's changed in the .NET Core Version?
 
-When using Jarosław's .NET Framework version of Expressive Annotations in a .NET Core application, server-side validation still works, but client-side validation doesn't. 
+When using Jarosław's .NET Framework version of Expressive Annotations in a .NET 8 application, server-side validation still works, but client-side validation doesn't. 
 
 In .NET Framework, [Custom Attributes](https://msdn.microsoft.com/en-us/library/cc668224.aspx) are implemented by defining a custom attribute class that inherits from `ValidationAttribute` (which implements server-side validation), and validation rules are passed to the client by hooking up a validator which inherits from [DataAnnotationsModelValidator](https://docs.microsoft.com/en-us/dotnet/api/system.web.modelbinding.dataannotationsmodelvalidator-1?view=netframework-4.7.2). 
 
