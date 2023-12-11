@@ -1,12 +1,11 @@
-﻿# UoN.ExpressiveAnnotations.NetCore
+﻿# UoN.ExpressiveAnnotations.Net8
 
 [![License](https://img.shields.io/badge/licence-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.org/uon-nuget/UoN.ExpressiveAnnotations.NetCore.svg?branch=master)](https://travis-ci.org/uon-nuget/UoN.ExpressiveAnnotations.NetCore)
-[![NuGet](https://img.shields.io/nuget/v/UoN.ExpressiveAnnotations.NetCore.svg)](https://www.nuget.org/packages/UoN.ExpressiveAnnotations.NetCore/)
+[![NuGet](https://img.shields.io/nuget/v/UoN.ExpressiveAnnotations.NetCore.svg)](https://www.nuget.org/packages/UoN.ExpressiveAnnotations.Net8/)
 
 ## What is it?
 
-A small .NET library forked from Jarosław Waliszko's [Expressive Annotations](https://github.com/jwaliszko/ExpressiveAnnotations) to add support for client-side validation in .NET Core projects. Expressive Annotations provides new flexible and powerful model validation attributes, to add to the attributes built in to .NET.
+A small .NET library forked from Jarosław Waliszko's [Expressive Annotations](https://github.com/jwaliszko/ExpressiveAnnotations) to add support for client-side validation in .NET 8 projects. Expressive Annotations provides new flexible and powerful model validation attributes, to add to the attributes built in to .NET.
 
 ## What does it do?
 
@@ -19,13 +18,13 @@ Conditions are specified as expressions within the attributes, using Expressive 
 
 ## Dependencies
 
-The library targets `netstandard2.0` and depends upon ASP.Net Core 2.1 MVC and Newtonsoft JSON 11.0.2.
+The library targets `net8.0` and depends upon .NET 8.0 MVC and Newtonsoft JSON.
 
 To use client-side validation you'll also need to include Jarosław's `expressive.annotations.validate.js`, which depends on `jquery.js` (note that jQuery must be made globally available), `jquery.validate.js` and `jquery.validate.unobtrusive.js`.
 
 ## <span id="usage">Usage</span>
 
-To use Expressive Annotations in your .NET Core project:
+To use Expressive Annotations in your .NET project:
 
 * Add the library to your project
 * Add the required javascript files to your project and include them in your layout or views
@@ -40,9 +39,9 @@ The library is available from [nuget.org](https://www.nuget.org/packages/UoN.Exp
 
 #### Build from source
 
-We recommend building with the `dotnet` cli, but since the package targets `netstandard2.0` and depends only on other `netstandard2.0` libraries, you should be able to build it in any tooling that supports those requirements.
+We recommend building with the `dotnet` cli, but since the package targets `.NET 8.0` and depends only on other `.NET 8.0` libraries, you should be able to build it in any tooling that supports those requirements.
 
-- Have the .NET Core SDK 2.1 or newer
+- Have the .NET Core SDK 8.0 or newer
 - `dotnet build`
 - Optionally `dotnet pack`
 - Reference the resulting assembly, or NuGet package.
