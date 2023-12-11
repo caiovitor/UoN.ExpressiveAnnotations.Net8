@@ -6,8 +6,6 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.Serialization;
-using System.Security;
-using System.Security.Permissions;
 
 namespace UoN.ExpressiveAnnotations.NetCore.Analysis
 {
@@ -72,19 +70,18 @@ namespace UoN.ExpressiveAnnotations.NetCore.Analysis
             Location = location.Clone();
         }
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ParseErrorException" /> class.
-        /// </summary>
-        /// <param name="info">The information.</param>
-        /// <param name="context">The context.</param>
-        [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
-        protected ParseErrorException(SerializationInfo info, StreamingContext context) // serialization constructor (without it deserialization will fail), protected for unsealed classes, private for sealed classes
-            : base(info, context)
-        {
-            Error = (string) info.GetValue("Error", typeof(string));
-            Expression = (string) info.GetValue("Expression", typeof(string));
-            Location = (Location) info.GetValue("Location", typeof(Location));
-        }
+        // /// <summary>
+        // ///     Initializes a new instance of the <see cref="ParseErrorException" /> class.
+        // /// </summary>
+        // /// <param name="info">The information.</param>
+        // /// <param name="context">The context.</param>
+        // protected ParseErrorException(SerializationInfo info, StreamingContext context) // serialization constructor (without it deserialization will fail), protected for unsealed classes, private for sealed classes
+        //     : base(info, context)
+        // {
+        //     Error = (string) info.GetValue("Error", typeof(string));
+        //     Expression = (string) info.GetValue("Expression", typeof(string));
+        //     Location = (Location) info.GetValue("Location", typeof(Location));
+        // }
 
         /// <summary>
         ///     Gets the error message.
@@ -101,21 +98,18 @@ namespace UoN.ExpressiveAnnotations.NetCore.Analysis
         /// </summary>
         public Location Location { get; private set; }
 
-        /// <summary>
-        ///     Gets the object data.
-        /// </summary>
-        /// <param name="info">The information.</param>
-        /// <param name="context">The context.</param>
-        [SecurityCritical]
-        [SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)] // deny creating an object of this type from a data that wasn't created by this serialization code
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            Debug.Assert(info != null);
-
-            info.AddValue("Error", Error, typeof(string));
-            info.AddValue("Expression", Expression, typeof(string));
-            info.AddValue("Location", Location, typeof(Location));
-            base.GetObjectData(info, context);
-        }
+        // /// <summary>
+        // ///     Gets the object data.
+        // /// </summary>
+        // /// <param name="info">The information.</param>
+        // /// <param name="context">The context.</param>
+        // public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        // {
+        //     Debug.Assert(info != null);
+        //     info.AddValue("Error", Error, typeof(string));
+        //     info.AddValue("Expression", Expression, typeof(string));
+        //     info.AddValue("Location", Location, typeof(Location));
+        //     base.GetObjectData(info, context);
+        // }
     }
 }

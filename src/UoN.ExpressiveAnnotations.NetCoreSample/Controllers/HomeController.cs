@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using System.Net.Http.Formatting;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Newtonsoft.Json;
 using UoN.ExpressiveAnnotations.NetCoreSample.Models;
+using System.Text;
 
 namespace UoN.ExpressiveAnnotations.NetCoreSample.Controllers
 {
@@ -33,7 +32,7 @@ namespace UoN.ExpressiveAnnotations.NetCoreSample.Controllers
 
             try
             {
-                return View("Home", JsonConvert.DeserializeObject<Query>((string) TempData["Query"]));
+                return View("Home", JsonConvert.DeserializeObject<Query>((string)TempData["Query"]));
             }
             catch
             {
@@ -70,22 +69,16 @@ namespace UoN.ExpressiveAnnotations.NetCoreSample.Controllers
             return View("Home", model);
         }
 
-        private async Task<HttpResponseMessage> Save(Query model) // simulate saving through WebAPI call
+        private async Task<HttpResponseMessage> Save(Query model)
         {
             using (var client = new HttpClient())
             {
-                Debug.Assert(Request.GetDisplayUrl() != null);
                 client.BaseAddress = new Uri($"{Request.Scheme}://{Request.Host}/");
-                var formatter = new JsonMediaTypeFormatter
-                {
-                    SerializerSettings = { ReferenceLoopHandling = ReferenceLoopHandling.Ignore }
-                };
-                return await client.PostAsync("api/Default", model, formatter);
+                var json = JsonConvert.SerializeObject(model);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                return await client.PostAsync("api/Default", content);
             }
         }
-
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

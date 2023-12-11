@@ -7,7 +7,6 @@ using System.Reflection;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
 
 namespace UoN.ExpressiveAnnotations.NetCoreSample.Misc
 {
@@ -20,7 +19,8 @@ namespace UoN.ExpressiveAnnotations.NetCoreSample.Misc
 
         public static IHtmlContent EnumDropDownListFor<TModel, TEnum>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TEnum>> expression, bool numericValues, object htmlAttributes)
         {
-            var modelExplorer = ExpressionMetadataProvider.FromLambdaExpression(expression, htmlHelper.ViewData, htmlHelper.MetadataProvider);
+            ModelExpressionProvider expressionProvider = new ModelExpressionProvider(htmlHelper.MetadataProvider);
+            var modelExplorer = expressionProvider.CreateModelExpression(htmlHelper.ViewData, expression);
             var metadata = modelExplorer.Metadata;
             var type = Nullable.GetUnderlyingType(metadata.ModelType) ?? metadata.ModelType;
             if (!type.IsEnum)
@@ -37,7 +37,7 @@ namespace UoN.ExpressiveAnnotations.NetCoreSample.Misc
                 Selected = value.Equals(modelExplorer.Model)
             });
 
-            if (modelExplorer.Metadata.IsNullableValueType) // if the enum is nullable, add an empty item to the collection
+            if (metadata.IsNullableValueType) // if the enum is nullable, add an empty item to the collection
                 items = new[] {new SelectListItem()}.Concat(items);
 
             return htmlHelper.DropDownListFor(expression, items, htmlAttributes);
