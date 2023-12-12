@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <PackageVersion>1.0.3</PackageVersion>
+    <Authors>Christoph Döllinger</Authors>
+    <Description>
+		Fork of UoN.ExpressiveAnnotations.Net8 which has been adapted to work with .NET 8.0. Unsafe and deprecated dependencies have been removed in this release.
+		Based on Jarosław Waliszko's Expressive Annotations .NET library, adding support for client-side validation in .NET Core. Expressive Annotations provides new flexible and powerful model validation attributes, to add to the attributes built in to .NET.
+    </Description>
+    <PackageReleaseNotes>This release is a fork of UoN.ExpressiveAnnotations adapted to work with .NET 8.0.</PackageReleaseNotes>
+    <Copyright>Copyright 2023 (c) Christoph Döllinger</Copyright>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageIcon>notepad.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/MrDoe/UoN.ExpressiveAnnotations.Net8</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/uon-nuget/UoN.ExpressiveAnnotations.Net8</RepositoryUrl>
+    <PackageTags>UoN Validation Unobtrusive DataAnnotations Annotations</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>UoN.ExpressiveAnnotations.Net8</Title>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <AssemblyVersion>1.0.3</AssemblyVersion>
+    <FileVersion>1.0.3</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+	<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	<None Include="..\..\LICENSE">
+	  <Pack>True</Pack>
+	  <PackagePath>\</PackagePath>
+	</None>
+	<None Include="..\..\README.md">
+	  <Pack>True</Pack>
+	  <PackagePath>\</PackagePath>
+	</None>
+	<None Include="\\fsx23\PATHO-BAS\doellingerchristoph\Pictures\notepad.png">
+	  <Pack>True</Pack>
+	  <PackagePath>\</PackagePath>
+	</None>
+	<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+</Project>

@@ -1,8 +1,8 @@
-﻿# UoN.ExpressiveAnnotations.NetCore
+﻿# UoN.ExpressiveAnnotations.Net8
 
 [![License](https://img.shields.io/badge/licence-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.org/uon-nuget/UoN.ExpressiveAnnotations.NetCore.svg?branch=master)](https://travis-ci.org/uon-nuget/UoN.ExpressiveAnnotations.NetCore)
-[![NuGet](https://img.shields.io/nuget/v/UoN.ExpressiveAnnotations.NetCore.svg)](https://www.nuget.org/packages/UoN.ExpressiveAnnotations.NetCore/)
+[![Build Status](https://travis-ci.org/uon-nuget/UoN.ExpressiveAnnotations.Net8.svg?branch=master)](https://travis-ci.org/uon-nuget/UoN.ExpressiveAnnotations.Net8)
+[![NuGet](https://img.shields.io/nuget/v/UoN.ExpressiveAnnotations.Net8.svg)](https://www.nuget.org/packages/UoN.ExpressiveAnnotations.Net8/)
 
 ## What is it?
 
@@ -36,7 +36,7 @@ To use Expressive Annotations in your .NET Core project:
 
 #### NuGet
 
-The library is available from [nuget.org](https://www.nuget.org/packages/UoN.ExpressiveAnnotations.NetCore/)
+The library is available from [nuget.org](https://www.nuget.org/packages/UoN.ExpressiveAnnotations.Net8/)
 
 #### Build from source
 
@@ -55,10 +55,10 @@ The required Javascript files are all available from [npm:](https://www.npmjs.co
 ```
 
 ### Referencing the javascript files
-Depending on how you build your Javascript files, you may need some kind of build step to get the JS files into the right place for your project. The `UoN.ExpressiveAnnotations.NetCoreSample` project in this solution uses [Library Manager](https://blogs.msdn.microsoft.com/webdev/2018/04/17/library-manager-client-side-content-manager-for-web-apps/), which is built in to Visual Studio from 15.8 onwards (April 2018). You can see how the sample project uses Library Manager [here](./src/UoN.ExpressiveAnnotations.NetCoreSample/libman.json). 
-The sample project also uses the [BuildBundlerMinifier](https://docs.microsoft.com/en-us/aspnet/core/client-side/bundling-and-minification?view=aspnetcore-2.1&tabs=visual-studio%2Caspnetcore2x) package to produce minified JS and CSS for production; you can see how it configures this [here](./src/UoN.ExpressiveAnnotations.NetCoreSample/bundleconfig.json).
+Depending on how you build your Javascript files, you may need some kind of build step to get the JS files into the right place for your project. The `UoN.ExpressiveAnnotations.Net8Sample` project in this solution uses [Library Manager](https://blogs.msdn.microsoft.com/webdev/2018/04/17/library-manager-client-side-content-manager-for-web-apps/), which is built in to Visual Studio from 15.8 onwards (April 2018). You can see how the sample project uses Library Manager [here](./src/UoN.ExpressiveAnnotations.Net8Sample/libman.json). 
+The sample project also uses the [BuildBundlerMinifier](https://docs.microsoft.com/en-us/aspnet/core/client-side/bundling-and-minification?view=aspnetcore-2.1&tabs=visual-studio%2Caspnetcore2x) package to produce minified JS and CSS for production; you can see how it configures this [here](./src/UoN.ExpressiveAnnotations.Net8Sample/bundleconfig.json).
 
-When referencing the javascript files in your views or layout, note that `expressive.annotations.validate.js` must be included **after** the jquery js files. Be careful not to include any of the js files twice, as this has been known to cause errors. The NetCore Sample project includes the javascript files in [_Layout.cshtml](./src/UoN.ExpressiveAnnotations.NetCoreSample/Views/Shared/_Layout.cshtml) and [_ValidationScriptsPartial](./src/UoN.ExpressiveAnnotations.NetCoreSample/Views/Shared/_ValidationScriptsPartial.cshtml), as follows:
+When referencing the javascript files in your views or layout, note that `expressive.annotations.validate.js` must be included **after** the jquery js files. Be careful not to include any of the js files twice, as this has been known to cause errors. The NetCore Sample project includes the javascript files in [_Layout.cshtml](./src/UoN.ExpressiveAnnotations.Net8Sample/Views/Shared/_Layout.cshtml) and [_ValidationScriptsPartial](./src/UoN.ExpressiveAnnotations.Net8Sample/Views/Shared/_ValidationScriptsPartial.cshtml), as follows:
 
 ```xml
     <environment include="Development">
@@ -80,10 +80,10 @@ In your project's `Startup.cs`, add the following in `ConfigureServices()`:
 ```
 
 ### Brief Examples of usage
-The [brief introductory examples](#what-are-a-brief-examples-of-usage) of how Expressive Annotations can be used, from Jarosław's original documentation, are still valid in UoN.ExpressiveAnnotations.NetCore. Models which use Expressive Annotations attributes will need:
+The [brief introductory examples](#what-are-a-brief-examples-of-usage) of how Expressive Annotations can be used, from Jarosław's original documentation, are still valid in UoN.ExpressiveAnnotations.Net8. Models which use Expressive Annotations attributes will need:
 
 ```csharp
-using UoN.ExpressiveAnnotations.NetCore.Attributes;
+using UoN.ExpressiveAnnotations.Net8.Attributes;
 ```
 
 
@@ -95,11 +95,11 @@ In .NET Framework, [Custom Attributes](https://msdn.microsoft.com/en-us/library/
 
 In .NET Core this has been simplified a little: `ValidationAttribute` still works the same way (hence server-side validation still works) but to support client-side validation the custom attribute class should implement [IClientModelValidator](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-2.1#iclientmodelvalidator), adding data attributes to the `ClientModelValidationContext` in the implementation of `AddValidation()`. 
 
-This is essentially the change implemented in this .NET Core Version of ExpressiveAnnotations. Although this means that separate Validator classes are no longer required, this implementation preserves the separation of the Validator classes from the Attribute classes, with the Attribute classes instantiating Validators and calling `AttachValidationRules()` on those Validators to add the data attributes to the context. A separate project for unobtrusive (client-side) validation is no longer necessary though, so the helper classes and methods from that project have been merged into the `UoN.ExpressiveAnnotations.NetCore` project.
+This is essentially the change implemented in this .NET Core Version of ExpressiveAnnotations. Although this means that separate Validator classes are no longer required, this implementation preserves the separation of the Validator classes from the Attribute classes, with the Attribute classes instantiating Validators and calling `AttachValidationRules()` on those Validators to add the data attributes to the context. A separate project for unobtrusive (client-side) validation is no longer necessary though, so the helper classes and methods from that project have been merged into the `UoN.ExpressiveAnnotations.Net8` project.
 
 In addition, the solution contains a re-implementation in .NET Core of Jarosław's sample project. The .NET Core sample has only been partially reworked to follow .NET Core best practices. Note that not all of the controls work in exactly the same way as before - the datepicker has not been implemented in the .Net Core sample, for example.
 
-The `UoN.ExpressiveAnnotations.NetCore` solution has also been simplified by removing the supporting projects. Separate samples for MvcWeb and MvvmDesktop applications are no longer relevant and the test projects have been removed because tests have not yet been re-implemented in this solution.
+The `UoN.ExpressiveAnnotations.Net8` solution has also been simplified by removing the supporting projects. Separate samples for MvcWeb and MvvmDesktop applications are no longer relevant and the test projects have been removed because tests have not yet been re-implemented in this solution.
 
 
 ## Contributing
@@ -111,7 +111,7 @@ If there are issues open, please feel free to make pull requests for them, and t
 
 ## Documentation
 
-Jarosław's documentation for Expressive Annotations is reproduced below, as it was at the time when `UoN.ExpressiveAnnotations.NetCore` was forked from it, with changes to those sections that are affected by the changes in the .NetCore version.
+Jarosław's documentation for Expressive Annotations is reproduced below, as it was at the time when `UoN.ExpressiveAnnotations.Net8` was forked from it, with changes to those sections that are affected by the changes in the .NetCore version.
 
 ### Table of contents
  - [What is the context behind this work?](#what-is-the-context-behind-this-implementation)
@@ -165,7 +165,7 @@ Declarative validation when [compared](#declarative-vs-imperative-programming---
 
 ### <a id="sample-project">Sample project</a>
 
-* [**.NET Core sample**](./src/UoN.ExpressiveAnnotations.NetCoreSample)
+* [**.NET Core sample**](./src/UoN.ExpressiveAnnotations.Net8Sample)
 
 This sample project is a .NET Core 2.1 update of Jarosław's MvcWebSample. A few parts of the project have been reworked to take advantage of new features of .NET Core, but only where required to get the project to run under .NET Core. As such, there is still some work to do to make this a true .NET Core project; it is at present merely a proof of concept to demonstrate how to use this .NET Core version of Expressive Annotations within a .NET Core application.
 
@@ -578,7 +578,7 @@ Note above covers almost exhaustively what is actually needed to work with EA. N
 
 ##### <a id="implementation">Implementation details outline</a>
 
-Implementation core is based on [expressions parser](src/UoN.ExpressiveAnnotations.NetCore/Analysis/Parser.cs?raw=true), which runs on the grammar [shown above](#grammar-definition).
+Implementation core is based on [expressions parser](src/UoN.ExpressiveAnnotations.Net8/Analysis/Parser.cs?raw=true), which runs on the grammar [shown above](#grammar-definition).
 
 Firstly, at the lexical analysis stage, character stream of the expression is converted into token stream (whitespaces ignored, characters grouped into tokens and associated with position in the text). Next, at the syntax analysis level, abstract syntax tree is constructed according to the rules defined by the grammar. While the tree is being built, also the 3rd stage, mainly semantic analysis, is being performed. This stage is directly related to operands type checking (and eventual type conversions according to type generalization rules, when incompatible types are detected).
 
@@ -821,7 +821,7 @@ Alternatively, to enforce re-binding of already attached validation handlers, us
 
 The default behaviour of jQuery Validate is to not validate (client-side) until the form is submitted, and thereafter to validate, on change, any fields that have previously failed validation - and only those fields. The rest are not validated until the next Submit.
 
-In implementing `UoN.ExpressiveAnnotations.NetCore`, we found it preferable that, after submit, ALL fields are validated on change. This means that, after a form has been submitted with errors, if the user then invalidates one of the fields that was valid when the form was submitted, they get immediate feedback about that, rather than getting immediate feedback only for some of the fields and then getting further feedback when they submit again with further errors. This behaviour is particularly noticeable in some of the more complex scenarios that Expressive Annotations allows, where the validation rules for some fields (which may initially be hidden) are dependent on the values of other fields elsewhere on the form.
+In implementing `UoN.ExpressiveAnnotations.Net8`, we found it preferable that, after submit, ALL fields are validated on change. This means that, after a form has been submitted with errors, if the user then invalidates one of the fields that was valid when the form was submitted, they get immediate feedback about that, rather than getting immediate feedback only for some of the fields and then getting further feedback when they submit again with further errors. This behaviour is particularly noticeable in some of the more complex scenarios that Expressive Annotations allows, where the validation rules for some fields (which may initially be hidden) are dependent on the values of other fields elsewhere on the form.
 
 In order to obtain the behaviour we desire, when the form is submitted we add ALL inputs to jquery-validation's validator.submitted array, which is how it keeps track of fields that have previously failed validation.
 
@@ -1121,7 +1121,7 @@ If you're searching for an answer to some other problem, not covered by this doc
 
 Expressive Annotations by Jarosław Waliszko, with special thanks to Szymon Małczak.
 
-`UoN.ExpressiveAnnotations.NetCore` by Mark Berry for The University of Nottingham, with special thanks to Jon Couldridge
+`UoN.ExpressiveAnnotations.Net8` by Mark Berry for The University of Nottingham, with special thanks to Jon Couldridge
 
 ### <a id="license">License</a>
 
