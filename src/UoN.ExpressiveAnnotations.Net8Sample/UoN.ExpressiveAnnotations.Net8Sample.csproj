@@ -3,12 +3,10 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.175" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UoN.ExpressiveAnnotations.Net8\UoN.ExpressiveAnnotations.Net8.csproj" />
+    <PackageReference Include="UoN.ExpressiveAnnotations.Net8" Version="1.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources.Designer.cs">
